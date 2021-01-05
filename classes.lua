@@ -8,6 +8,8 @@ _G.require 'freeze'
 local frozen_env = _G.freeze.frozen(_M)
 _G.setfenv(1, frozen_env)
 
+local lists = _G.require 'lists'
+
 _M.Class = {}
 
 local function initialize_class(new_class, name, parents)
@@ -20,7 +22,10 @@ local function initialize_class(new_class, name, parents)
 
   _G.setmetatable(new_class, new_class_metatable)
 
-  new_class.parents = parents or {}
+  parents = parents or {}
+  new_class.parents = lists.new_list(parents)
+
+  new_class.governs = make_governs(new_class)
 end
 
 function Class.new(name)
@@ -36,6 +41,7 @@ _M.Number = Class.new('Number')
 _M.String = Class.new('String')
 _M.Boolean = Class.new('Boolean')
 _M.Table = Class.new('Table')
+Class.parents[1] = Table
 _M.Function = Class.new('Function')
 _M.Thread = Class.new('Thread')
 _M.Userdata = Class.new('Userdata')
