@@ -10,7 +10,7 @@ _G.setfenv(1, frozen_env)
 
 _M.Class = {}
 
-local function initialize_class(new_class, name)
+local function initialize_class(new_class, name, parents)
   new_class.name = name
   local new_class_metatable = {class = Class}
 
@@ -19,6 +19,8 @@ local function initialize_class(new_class, name)
   end
 
   _G.setmetatable(new_class, new_class_metatable)
+
+  new_class.parents = parents or {}
 end
 
 function Class.new(name)
