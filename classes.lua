@@ -53,7 +53,7 @@ function EnumClass.new_without_values(name)
 end
 
 _M.Nil = EnumClass.new_without_values('Nil')
-Nil.values = lists.new_list{['nil'] = nil} -- Sadly, {['nil'] = nil} is the same as {}.
+Nil.values = lists.new_list({},1)
 _M.Number = Class.new('Number')
 _M.String = Class.new('String')
 _M.Boolean = EnumClass.new_without_values('Boolean')
