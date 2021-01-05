@@ -24,8 +24,6 @@ local function initialize_class(new_class, name, parents)
 
   parents = parents or {}
   new_class.parents = lists.new_list(parents)
-
-  new_class.governs = make_governs(new_class)
 end
 
 function Class.new(name)
