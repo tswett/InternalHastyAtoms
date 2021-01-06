@@ -21,13 +21,13 @@ _M.Class = {}
 
 local function initialize_class(new_class, name, parents, metaclass)
   new_class.name = name
-  local new_class_metatable = {class = metaclass or Class}
+  new_class.metatable = {class = metaclass or Class}
 
-  function new_class_metatable.__tostring(class)
+  function new_class.metatable.__tostring(class)
     return "class '" .. class.name .. "'"
   end
 
-  _G.setmetatable(new_class, new_class_metatable)
+  _G.setmetatable(new_class, new_class.metatable)
 
   parents = parents or {}
   new_class.parents = lists.new_list(parents)
