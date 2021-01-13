@@ -1,12 +1,7 @@
 local _G = _G
-
-module 'examine'
-
+require 'freeze'
+freeze.frozen_module 'examine'
 local _M = _M
-
-_G.require 'freeze'
-local frozen_env = _G.freeze.frozen(_M)
-_G.setfenv(1, frozen_env)
 
 function _M.print_items(table, print_function)
   print_function = print_function or _G.print

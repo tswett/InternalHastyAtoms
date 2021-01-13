@@ -1,12 +1,7 @@
 local _G = _G
-
-module 'classes'
-
+require 'freeze'
+freeze.frozen_module 'classes'
 local _M = _M
-
-_G.require 'freeze'
-local frozen_env = _G.freeze.frozen(_M)
-_G.setfenv(1, frozen_env)
 
 local lists = _G.require 'lists'
 
